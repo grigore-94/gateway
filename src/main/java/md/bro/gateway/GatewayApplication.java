@@ -14,14 +14,4 @@ public class GatewayApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(GatewayApplication.class, args);
 	}
-
-	@Bean
-	@Autowired
-	public RestTemplate getRestTemplate(RestTemplateBuilder restTemplateBuilder) {
-		RestTemplate restTemplate = restTemplateBuilder
-				.errorHandler(new RestTemplateResponseErrorHandler())
-				.build();
-
-		return restTemplate;
-	}
 }

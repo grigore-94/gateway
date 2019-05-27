@@ -15,8 +15,12 @@ public class ResourceNotFoundExceptionHandler extends ResponseEntityExceptionHan
 
     @ExceptionHandler(ResourceNotFoundException.class)
     public ResponseEntity<ErrorDetails> handleResourceNotFoundException(ResourceNotFoundException ex, WebRequest request) {
-        ErrorDetails errorDetails = new ErrorDetails(new Date(), ex.getMessage(),
-                request.getDescription(false));
+        ErrorDetails errorDetails = new ErrorDetails(
+                new Date(),
+                ex.getMessage(),
+                request.getDescription(false)
+        );
+
         return new ResponseEntity<>(errorDetails, HttpStatus.NOT_FOUND);
     }
 }

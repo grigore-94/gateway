@@ -22,13 +22,13 @@ public class UserService {
         try {
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
 
-            return jwtTokenProvider.createToken(username, repository.findByUsername(username).getRoles());
+            return jwtTokenProvider.createToken(username, repository.findByUsername(username).get().getRoles());
         } catch (AuthenticationException e) {
             throw new CustomException("Invalid username/password supplied", HttpStatus.UNPROCESSABLE_ENTITY);
         }
     }
 
     public String refresh(String username) {
-        return jwtTokenProvider.createToken(username, repository.findByUsername(username).getRoles());
+        return jwtTokenProvider.createToken(username, repository.findByUsername(username).get().getRoles());
     }
 }

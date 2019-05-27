@@ -20,6 +20,7 @@ public class UserManagementClient<T> {
     public ResponseEntity<String> exchange (String path, T params, HttpMethod httpMethod) {
         HttpHeaders headers = new HttpHeaders();
         headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
+        headers.setContentType(MediaType.APPLICATION_JSON);
         HttpEntity<T> entity = new HttpEntity<T>(params,headers);
 
         return restTemplate.exchange(msUrl + path, httpMethod, entity, String.class);
